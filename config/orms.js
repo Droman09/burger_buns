@@ -1,5 +1,5 @@
 // Import MySQL connection
-const connection = require("config/connection.js");
+const connection = require("../config/connection.js");
 
 function printQuestionMarks(num){
     var arr = [];
@@ -26,7 +26,6 @@ function obj(ob){
 }
 
 const orm = {
-
     selectAll: function(cb){
         const query = "SELECT * FROM burgers;"
         connection.query(query, (err, result)=> {
@@ -65,5 +64,7 @@ const orm = {
     }
 
 };
+
+console.log(orm)
 
 module.export = orm;
