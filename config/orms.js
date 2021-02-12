@@ -9,43 +9,44 @@ function printQuestionMarks(num){
     return arr.toString()
 }
 
-function obj(ob){
-    const arr = [];
+function objToSql(ob){
+    var arr = [];
 
-    for(var key in ob) {
+    for (var key in ob) {
         var value = ob[key];
 
-        if(Object.hasOwnProperty.call(ob,key)){
-            if (typeof value === "string" && value.indexOf(" ")>= 0) {
-                value = " " + value + " ";
+        if(Object.hasOwnProperty.call(ob,key)) {
+            if (typeof value === "string" && value.indexOf(" ") >= 0) {
+                value = "'" + value + "'";
             }
             arr.push(key + "=" + value);
         }
     }
-    return arr.toString()
+    return arr.toString();
 }
 
-const orm = {
-    selectAll: function(cb){
-        const query = "SELECT * FROM burgers;"
+var orm = {
+    selectAll: function(tableInput, cb){
+        var query = "SELECT * FROM " + tableInput + ";"
         connection.query(query, (err, result)=> {
             if (err) throw err;
             cb(result);
-        })
+        });
     },
-
-    insertOne:function(table, cols, vals, cb){
+    insertOne: function(table, cols, vals, cb){
         var query = "INSERT INTO " + table;
         query += " (";
         query += cols.toString();
         query += ") ";
         query += "VALUES (";
-        query += printQuestionMarks(vals.lenght);
+        query += printQuestionMarks(vals.length);
         query += ") ";
 
-        conneciton.query(query, vals, (err, result)=> {
+        console.log(query)
+
+        connection.query(query, vals, (err, result)=> {
             if(err) throw err;
-            cb(result)
+            cb(result);
         })
 
     },
@@ -53,7 +54,7 @@ const orm = {
     updateOne: function(table, objColVals, condition, cb){
         var query = "UPDATE " + table;
         query += " SET ";
-        qurty += obj(objColVals);
+        query += objToSql(objColVals);
         query += " WHERE ";
         query += condition;
 
@@ -65,6 +66,5 @@ const orm = {
 
 };
 
-console.log(orm)
 
-module.export = orm;
+module.exports = orm;

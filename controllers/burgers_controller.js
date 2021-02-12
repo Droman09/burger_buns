@@ -1,33 +1,33 @@
 const express = require("express");
 const router = express.Router();
 
-const burgers = require("../models/burger.js");
+const burger = require("../models/burger.js");
 
 router.get("/", (req, res) => {
-    burgers.selectAll( data => {
-        const hdbObject = {
+    burger.selectAll( data => {
+        var hdbObject = {
             burgers: data
         };
+        console.log(hdbObject)
         res.render("index", hdbObject)
     });
 })
 
 router.post("/api/burgers", (req,res) => {
-    burgers.insertOne(
-        [
-        "name", "devoured"
-        ],
-        [
-        req.body.name, req.body.devoured
+    burger.insertOne([
+        "burger_name", "devoured"
+        ], [
+        req.body.burger_name, req.body.devoured
         ], result => {
-            res.json({ id: result.insertId })
+            res.json({ id: result.insertId });
         });
 });
 
 router.put("/api/burgers/:id", (req, res) => {
-    const condition = "id = " + req.params.id;
+    var condition = "id = " + req.params.id;
 
-    burgers.updateOne({
+    console.log("condition", condition);
+    burger.updateOne({
         devoured: req.body.devoured
     }, condition, result => {
         if (result.changedRows == 0){
