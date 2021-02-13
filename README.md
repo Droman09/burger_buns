@@ -15,8 +15,8 @@
 
 ## Installation
  `package.json` is a document that would let you know what dependencies is required to make this app work. On your terminal, make sure that you select `server.js` then type in `npm install` to retrieve all dependencies.
-
-Include `schema.sql` and `seed.sql` in your MySQLWorkbench to pre-populate your database. 
+ 
+ Include `schema.sql` and `seed.sql` in your MySQLWorkbench to pre-populate your database. 
  
 
 ## Usage
