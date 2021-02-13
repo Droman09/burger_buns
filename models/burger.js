@@ -19,5 +19,5 @@ var burger = {
     }
 };
 
-
+// Export database functions for the controller 
 module.exports = burger;

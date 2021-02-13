@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Burger</title>
     <script src="https://code.jquery.com/jquery.js"></script>
-    {{!-- <script src="/public/assets/js/script.js"></script> --}}
 </head>
 <body>
     {{{ body }}}
@@ -26,7 +25,6 @@ $(function() {
         data: newDevouredState
       }).then(
         function() {
-          console.log("changed sleep to", newDevoured);
           location.reload();
         }
       );
@@ -51,7 +49,5 @@ $(function() {
     });
 
   });
-
-
 </script>
 </html>
