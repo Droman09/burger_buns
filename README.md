@@ -20,7 +20,10 @@
  
 
 ## Usage
-![GIF]() 
+![GIF](public/burgerVid.gif) 
+
+Heroku website: 
+https://murmuring-harbor-65548.herokuapp.com
 
 ## Technologies
     HTML
